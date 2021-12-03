@@ -20,10 +20,10 @@ export function handleSummary(data) {
   console.log('Preparing the end-of-test summary...');
   console.log('>>>>data='+JSON.stringify(data));
   // Send the results to some remote server or trigger a hook
-  const resp = http.post('https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/write?db=myk6db', JSON.stringify(data));
-  if (resp.status != 200) {
-    console.error('Could not send summary, got status ' + resp.status);
-  }
+//   const resp = http.post('https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/write?db=myk6db', JSON.stringify(data));
+//   if (resp.status != 200) {
+//     console.error('Could not send summary, got status ' + resp.status);
+//   }
 
   return {
     'stdout': textSummary(data, { indent: ' ', enableColors: true }), // Show the text summary to stdout...

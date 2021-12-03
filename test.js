@@ -16,7 +16,20 @@ export default function () {
   sleep(1);
 }
 
-export function teardown() {
-  const http_req_duration = metrics.http_req_duration.results(); // Just a method to extract the statistics
-  console.log('>>>>>> Response time was ' + String(res.timings.duration) + ' ms');
+export function handleSummary(data) {
+  console.log('Preparing the end-of-test summary...');
+console.log('>>>>data='+JSON.stringify(data));
+  // Send the results to some remote server or trigger a hook
+//   const resp = http.post('https://httpbin.test.k6.io/anything', JSON.stringify(data));
+//   if (resp.status != 200) {
+//     console.error('Could not send summary, got status ' + resp.status);
+//   }
+
+  return {
+    'stdout': textSummary(data, { indent: ' ', enableColors: true }), // Show the text summary to stdout...
+   // '../path/to/junit.xml': jUnit(data), // but also transform it and save it as a JUnit XML...
+    'summary.json': JSON.stringify(data), // and a JSON with all the details...
+    // And any other JS transformation of the data you can think of,
+    // you can write your own JS helpers to transform the summary data however you like!
+  };
 }

@@ -18,12 +18,12 @@ export default function () {
 
 export function handleSummary(data) {
   console.log('Preparing the end-of-test summary...');
-console.log('>>>>data='+JSON.stringify(data));
+  console.log('>>>>data='+JSON.stringify(data));
   // Send the results to some remote server or trigger a hook
-//   const resp = http.post('https://httpbin.test.k6.io/anything', JSON.stringify(data));
-//   if (resp.status != 200) {
-//     console.error('Could not send summary, got status ' + resp.status);
-//   }
+  const resp = http.post('http://1ebd-103-109-144-43.ngrok.io/summary', JSON.stringify(data));
+  if (resp.status != 200) {
+    console.error('Could not send summary, got status ' + resp.status);
+  }
 
   return {
     'stdout': textSummary(data, { indent: ' ', enableColors: true }), // Show the text summary to stdout...

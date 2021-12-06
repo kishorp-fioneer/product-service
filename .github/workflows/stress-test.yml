@@ -1,23 +1,19 @@
-import http from 'k6/http';
-import { sleep } from 'k6';
+name: K6 Stress Test
 
-export const options = {
-  stages: [
-    { duration: '2m', target: 100 }, // below normal load
-    { duration: '5m', target: 100 },
-    { duration: '2m', target: 200 }, // normal load
-    { duration: '5m', target: 200 },
-    { duration: '2m', target: 300 }, // around the breaking point
-    { duration: '5m', target: 300 },
-    { duration: '2m', target: 400 }, // beyond the breaking point
-    { duration: '5m', target: 400 },
-    { duration: '10m', target: 0 }, // scale down. Recovery stage.
-  ],
-};
+on: [workflow_dispatch]
 
-export default function () {
+jobs:
 
-  const res = http.get('https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/');
+  k6_load_test:
+    name: k6 Stress Test
+    runs-on: ubuntu-latest
 
-  sleep(1);
-}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run local k6 test
+        uses: k6io/action@v0.1
+        with:
+          filename: stress-test.js
+          flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db

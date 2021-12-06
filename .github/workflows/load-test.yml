@@ -20,3 +20,21 @@ jobs:
         with:
           filename: test.js
           flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db
+
+  screenshots:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: install puppeteer-headful
+      uses: mujo-code/puppeteer-headful@master
+      env:
+        CI: 'true'
+    - name: screenshots-ci-action
+      uses: flameddd/screenshots-ci-action@v1.1.1
+      with:
+        url: https://mygrafana.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/d/Rk7cmd27z/k6-load-testing-results?orgId=1&var-Measurement=http_req_duration&from=1638773323622&to=1638784123622&viewPanel=5
+        devices: iPhone 6,iPhone 6 landscape,Nexus 7,Pad Pro,Galaxy S III landscape,iPad Pro landscape
+    - uses: actions/upload-artifact@v2
+      with:
+        path: screenshots
+        name: Download-screenshots

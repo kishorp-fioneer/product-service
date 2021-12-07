@@ -15,5 +15,5 @@ jobs:
       - name: Run local k6 test
         uses: k6io/action@v0.1
         with:
-          filename: stress-test.js
+          filename: stress-test2.js
           flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db

@@ -17,7 +17,9 @@ export const options = {
 
 export default function () {
 
-  const res = http.get('https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/static/');
+ // const res = http.get('https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/static/');
+  
+  const res = http.get('http://1af4-103-208-69-84.ngrok.io/api/products/static/');
 
   sleep(1);
 }

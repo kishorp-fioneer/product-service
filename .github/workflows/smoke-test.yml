@@ -1,0 +1,20 @@
+
+name: K6 Smoke Test
+
+on: [workflow_dispatch]
+
+jobs:
+
+  k6_smoke_test:
+    name: k6 Smoke Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run local k6 test
+        uses: k6io/action@v0.1
+        with:
+          filename: smoke-test.js
+          flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db

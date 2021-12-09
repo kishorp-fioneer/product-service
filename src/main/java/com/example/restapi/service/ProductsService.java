@@ -2,6 +2,9 @@ package com.example.restapi.service;
 
 import com.example.restapi.model.Product;
 import com.example.restapi.repository.ProductRepository;
+
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +20,11 @@ public class ProductsService {
     @Autowired
     public void setProductRepository(ProductRepository productRepository) {
         this.productRepository = productRepository;
+    }
+
+    public List<Product> getProducts() {
+        LOG.info("Getting all products");
+        return productRepository.findAll();
     }
 
     public Product getProduct(String id) {

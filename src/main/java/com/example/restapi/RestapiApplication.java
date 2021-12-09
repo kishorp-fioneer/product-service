@@ -1,13 +1,16 @@
 package com.example.restapi;
 
-import com.example.restapi.model.Product;
-import com.example.restapi.repository.ProductRepository;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
+
+import com.example.restapi.model.Product;
+import com.example.restapi.repository.ProductRepository;
 
 @SpringBootApplication
 public class RestapiApplication implements CommandLineRunner {
@@ -26,13 +29,16 @@ public class RestapiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 
-		Product testProduct = new Product();
-		testProduct.setName("Simple Product");
-		testProduct.setDescription("This is a tester product");
-		testProduct.setType("CUSTOM");
-		testProduct.setCategory("SPECIAL");
-
-		productRepository.save(testProduct);
+		List<String> types = Arrays.asList(new String[] {"TV", "Refrigerator", "Mobile", "AC", "Microwave", "Washing Machine", "Dishwasher"});
+		Random r = new Random();
+		for (int i = 1; i <= 100; i++) {
+			Product testProduct = new Product();
+			testProduct.setName("Simple Product " + i);
+			testProduct.setDescription("This is a electornic product # " + i);
+			testProduct.setType(types.get(r.nextInt(7)));
+			testProduct.setCategory("Electronics");
+			productRepository.save(testProduct);
+		}
 
 	}
 }

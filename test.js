@@ -6,7 +6,7 @@ import { group, sleep } from "k6";
 
 export let options = {
     stages: [
-        { target: 10, duration: "5m" }
+        { target: 10, duration: "15m" }
     ]
 };
 

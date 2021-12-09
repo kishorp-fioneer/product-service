@@ -10,23 +10,23 @@ export let options = {
     ]
 };
 
-var flow1RespTime = new Trend("flow_1_resp_time");
-var flow2RespTime = new Trend("flow_2_resp_time");
-var flow3RespTime = new Trend("flow_3_resp_time");
+var api1RespTime = new Trend("api_1_resp_time");
+var api2RespTime = new Trend("api_2_resp_time");
+var api3RespTime = new Trend("api_3_resp_time");
 
 
 export default function() {
     group("Flow 1", function() {
-        let res = http.get("https://test.loadimpact.com/public/crocodiles/1/");
-        flow1RespTime.add(res.timings.duration);
+        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/");
+        api1RespTime.add(res.timings.duration);
     });
     group("Flow 2", function() {
-        let res = http.get("https://test.loadimpact.com/public/crocodiles/2/");
-        flow2RespTime.add(res.timings.duration);
+        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/e4e081f17d97ca17017d97caaa870000");
+        api2RespTime.add(res.timings.duration);
     });
     group("Flow 3", function() {
-        let res = http.get("https://test.loadimpact.com/public/crocodiles/3/");
-        flow3RespTime.add(res.timings.duration);
+        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/e4e081f17d97ca17017d97caace20003");
+        api3RespTime.add(res.timings.duration);
      });
     sleep(1);
 };

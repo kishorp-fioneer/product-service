@@ -11,6 +11,9 @@ export let options = {
 };
 
 var flow1RespTime = new Trend("flow_1_resp_time");
+var flow2RespTime = new Trend("flow_2_resp_time");
+var flow3RespTime = new Trend("flow_3_resp_time");
+
 
 export default function() {
     group("Flow 1", function() {
@@ -19,11 +22,11 @@ export default function() {
     });
     group("Flow 2", function() {
         let res = http.get("https://test.loadimpact.com/public/crocodiles/2/");
-        flow1RespTime.add(res.timings.duration);
+        flow2RespTime.add(res.timings.duration);
     });
     group("Flow 3", function() {
         let res = http.get("https://test.loadimpact.com/public/crocodiles/3/");
-        flow1RespTime.add(res.timings.duration);
+        flow3RespTime.add(res.timings.duration);
      });
     sleep(1);
 };

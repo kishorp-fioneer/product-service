@@ -1,0 +1,23 @@
+# This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
+# For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
+
+name: K6 Load Test
+
+on: [workflow_dispatch]
+
+jobs:
+
+  k6_load_test:
+    name: k6 Load Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run local k6 load test
+        uses: k6io/action@v0.1
+        with:
+          filename: load-test.js
+          flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db
+

@@ -14,11 +14,11 @@
         "baseUrl": "https://test-api.k6.io",
         "addUserUrl": "https://test-api.k6.io/user/register/",
         "loginUrl":"https://test-api.k6.io/auth/token/login/",
-        "getProductByIdUrl": "https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/$id",
-        "getAllProductsUrl": "http://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/",
-        "deleteProductByIdUrl": "https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/$id",
-        "addProductUrl":"https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/",
-        "modifyProductByIdUrl": "https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/$id",
+        "getProductByIdUrl": "https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/$id",
+        "getAllProductsUrl": "https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/",
+        "deleteProductByIdUrl": "https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/$id",
+        "addProductUrl":"https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/",
+        "modifyProductByIdUrl": "https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/$id",
         "logoutUrl":"https://test-api.k6.io/auth/cookie/logout/"
     }
 }

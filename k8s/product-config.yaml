@@ -1,6 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: product-api-config
-data:
-  number_of_products: "1000"

@@ -1,3 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-api-config
+data:
+  number_of_products: "1000"
+  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -35,7 +42,7 @@ spec:
             limits:
               cpu: 200m
             requests:
-              cpu: 150m
+              cpu: 50m
 
 status: {}
 ---
@@ -74,6 +81,11 @@ spec:
         - PUT
         - DELETE
       path: /.*
+      mutators:
+       - handler: header
+         config:
+          headers:
+            x-forwarded-host: product-perf.c-1da60bd.kyma.ondemand.com
   service:
     host: product-perf
     name: product-perf

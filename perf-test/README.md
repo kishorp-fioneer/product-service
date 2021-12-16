@@ -1,0 +1,1 @@
+Directory contains performace K6 test scripts

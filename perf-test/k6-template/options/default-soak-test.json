@@ -1,0 +1,107 @@
+{
+   "scenarios":{
+      "getProducts":{
+         "executor":"ramping-arrival-rate",
+          "startTime":"30s",
+         "startRate":50,
+         "timeUnit":"1s",
+         "stages":[
+           { "target": 400, "duration": "2m" },
+           { "target": 400, "duration": "3h56m" },
+           { "target": 0, "duration": "2m" }
+         ],
+         "preAllocatedVUs":50,
+         "maxVUs":800,
+         "tags":{
+            "test_type":"getProducts"
+         },
+         "exec":"getProducts"
+      },
+      "addProduct":{
+         "executor":"ramping-arrival-rate",
+         "startTime":"30s",
+         "startRate":50,
+         "timeUnit":"1s",
+         "stages":[
+           { "target": 400, "duration": "2m" },
+           { "target": 400, "duration": "3h56m" },
+           { "target": 0, "duration": "2m" }
+         ],
+         "preAllocatedVUs":50,
+         "maxVUs":800,
+         "tags":{
+            "test_type":"addProduct"
+         },
+         "exec":"addProduct"
+      },
+      "getProductById":{
+         "executor":"ramping-arrival-rate",
+         "startTime":"30s",
+         "startRate":50,
+         "timeUnit":"1s",
+         "stages":[
+           { "target": 400, "duration": "2m" },
+           { "target": 400, "duration": "3h56m" },
+           { "target": 0, "duration": "2m" }
+         ],
+         "preAllocatedVUs":50,
+         "maxVUs":800,
+         "tags":{
+            "test_type":"getProductById"
+         },
+         "exec":"getProductById"
+      },
+      "modifyProductById":{
+         "executor":"ramping-arrival-rate",
+          "startTime":"30s",
+         "startRate":50,
+         "timeUnit":"1s",
+         "stages":[
+           { "target": 400, "duration": "2m" },
+           { "target": 400, "duration": "3h56m" },
+           { "target": 0, "duration": "2m" }
+         ],
+         "preAllocatedVUs":50,
+         "maxVUs":800,
+         "tags":{
+            "test_type":"modifyProductById"
+         },
+         "exec":"modifyProductById"
+      },
+      "deleteProductById":{
+         "executor":"ramping-arrival-rate",
+         "startTime":"30s",
+         "startRate":50,
+         "timeUnit":"1s",
+         "stages":[
+           { "target": 400, "duration": "2m" },
+           { "target": 400, "duration": "3h56m" },
+           { "target": 0, "duration": "2m" }
+         ],
+         "preAllocatedVUs":50,
+         "maxVUs":800,
+         "tags":{
+            "test_type":"deleteProductById"
+         },
+         "exec":"deleteProductById"
+      }
+   },
+   "thresholds":{
+      "http_req_duration{test_type:getProducts}":[
+         "p(95)<350",
+         "p(99)<450"
+      ],
+      "http_req_duration{test_type:addProduct}":[
+         "p(95)<300"
+      ],
+      "http_req_duration{test_type:getProductById}":[
+         "p(95)<300"
+      ],
+      "http_req_duration{test_type:modifyProductById}":[
+         "p(95)<300"
+      ],
+      "http_req_duration{test_type:deleteProductById}":[
+         "p(95)<300"
+      ]
+   }
+}

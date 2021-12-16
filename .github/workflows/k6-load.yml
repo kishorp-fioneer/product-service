@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: K6 Test
+name: Load Test using k6
 
 # Controls when the workflow will run
 on:
@@ -14,9 +14,9 @@ on:
   workflow_dispatch:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
-jobs:    
+jobs:
   k6_load_test:
-    name: Load Test using k6 
+    name: Load Test using k6
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

@@ -1,0 +1,22 @@
+name: K6 Test
+
+# Controls when the workflow will run
+on: [workflow_dispatch]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:    
+  k6_load_test:
+    name: k6 Soak Test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Run local k6 test
+        uses: k6io/action@v0.1
+        with:
+          flags: --out influxdb=https://influxdb.c-1da60bd.kyma.ondemand.com/k6db
+          filename: ./perf-test/k6-template/TEMPLATE.js
+        env:
+           K6_HOSTENV: qa
+           K6_TEST_TYPE: soak

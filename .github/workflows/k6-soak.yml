@@ -1,4 +1,4 @@
-name: K6 Test
+name: K6 Soak Test
 
 # Controls when the workflow will run
 on: [workflow_dispatch]

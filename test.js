@@ -17,15 +17,15 @@ var api3RespTime = new Trend("api_3_resp_time");
 
 export default function() {
     group("Flow 1", function() {
-        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/");
+        let res = http.get("https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/");
         api1RespTime.add(res.timings.duration);
     });
     group("Flow 2", function() {
-        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/e4e081f17d97ca17017d97caaa870000");
+        let res = http.get("https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/e4e080d57dc206af017dc2073aaf0000");
         api2RespTime.add(res.timings.duration);
     });
     group("Flow 3", function() {
-        let res = http.get("https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/e4e081f17d97ca17017d97caace20003");
+        let res = http.get("https://product-perf.c-1da60bd.kyma.ondemand.com/api/products/e4e080d57dc206af017dc2073c9e0001");
         api3RespTime.add(res.timings.duration);
      });
     sleep(1);

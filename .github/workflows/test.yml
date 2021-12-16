@@ -16,4 +16,4 @@ jobs:
         uses: k6io/action@v0.1
         with:
           filename: test.js
-          flags: --out influxdb=https://influxdb.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/myk6db
+          flags: --out influxdb=https://influxdb.c-1da60bd.kyma.ondemand.com/k6db

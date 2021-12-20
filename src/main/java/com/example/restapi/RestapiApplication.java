@@ -11,7 +11,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.example.restapi.model.Product;
 import com.example.restapi.repository.ProductRepository;
-
 @SpringBootApplication
 public class RestapiApplication implements CommandLineRunner {
 

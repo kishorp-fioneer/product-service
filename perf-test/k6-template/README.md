@@ -6,7 +6,7 @@ This repository assumes that you have a basic knowledge of docker, javascript an
 ## Build & Run
 
 If you're on Windows, simply set the variables for `K6_HOSTENV` , `K6_SCRIPT` & `K6_TEST_TYPE` to your target values and run `.\run.ps1`. Otherwise, see the instructions below for a manual build and run.
-K6_TEST_TYPE possible values(`load`,`soak`,`spike`,`stress`)
+K6_TEST_TYPE possible values(`load`,`soak`,`spike`,`stress`,`smoke`)
 ### Build
 
 ```bash

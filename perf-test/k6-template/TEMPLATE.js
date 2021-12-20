@@ -14,14 +14,16 @@ var getProductRespTime = new Trend("getProduct_resp_time");
 export let options = null;
 
 switch(__ENV.K6_TEST_TYPE){
-  case 'load': options = loadOptions('default-load-test');
+ case 'load': options = loadOptions('default-load-test');
                break;
  case 'soak': options = loadOptions('default-soak-test');
-              break;
+                break;
  case 'spike': options = loadOptions('default-spike-test');
                break;
  case 'stress': options = loadOptions('default-stress-test');
-              break;
+                break;
+  case 'smoke': options = loadOptions('default-smoke-test');
+                break;
   default:    options = loadOptions('default-load-test');
                break;
 }

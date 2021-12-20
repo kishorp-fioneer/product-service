@@ -49,7 +49,7 @@
       },
       "getProductById":{
          "executor":"ramping-arrival-rate",
-         "startTime":"1s",
+         "startTime":"10s",
          "startRate":5,
          "timeUnit":"1s",
          "stages":[
@@ -95,7 +95,7 @@
       },
       "deleteProductById":{
          "executor":"ramping-arrival-rate",
-         "startTime":"1s",
+         "startTime":"10s",
          "startRate":5,
          "timeUnit":"1s",
          "stages":[

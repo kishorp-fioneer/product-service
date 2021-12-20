@@ -22,13 +22,13 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Product  Build with Maven
-      run: mvn -B package --file ./product-service/pom.xml
+      run: mvn -B package --file ./pom.xml
     - name: Upload a Product Artifact
       uses: actions/upload-artifact@v2
       with:
         name: product-artifact
         path: |
-          product-service/target/*.jar
+          ./target/*.jar
         if-no-files-found: error
         retention-days: 3
   product-docker-image:
@@ -43,11 +43,11 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: product-artifact
-          path: product-service/target
+          path: ./target
 
       - name: Display downloaded artifacts
         run: ls -R
-        working-directory: product-service/target
+        working-directory: ./target
 
       - name: Docker build
         run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.1 -f product-service/Dockerfile product-service

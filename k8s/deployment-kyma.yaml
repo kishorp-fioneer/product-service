@@ -1,0 +1,92 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: product-api-config
+data:
+  number_of_products: "1000"
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: product-perf
+    kyma-grafana: enabled
+  name: product-perf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: product-perf
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: product-perf
+        kyma-grafana: enabled
+    spec:
+      containers:
+        - image: kishor4j/product-service:0.0.1
+          name: product-perf
+          env:
+            - name: NUMBER_OF_PRODUCTS
+              valueFrom:
+                configMapKeyRef:
+                  name: product-api-config
+                  key: number_of_products
+          ports:
+            - containerPort: 8080
+          resources:
+            limits:
+              cpu: 200m
+            requests:
+              cpu: 50m
+
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: product-perf
+  name: product-perf
+spec:
+  ports:
+    - port: 8080
+      protocol: TCP
+      targetPort: 8080
+  selector:
+    app: product-perf
+  type: ClusterIP
+status:
+  loadBalancer: {}
+
+---
+apiVersion: gateway.kyma-project.io/v1alpha1
+kind: APIRule
+metadata:
+  name: product-perf
+spec:
+  gateway: kyma-gateway.kyma-system.svc.cluster.local
+  rules:
+    - accessStrategies:
+        - config: {}
+          handler: noop
+      methods:
+        - GET
+        - POST
+        - PUT
+        - DELETE
+      path: /.*
+      mutators:
+       - handler: header
+         config:
+          headers:
+            x-forwarded-host: product-perf.c-1da60bd.kyma.ondemand.com
+  service:
+    host: product-perf
+    name: product-perf
+    port: 8080

@@ -55,7 +55,7 @@
          "stages":[
             {
                "target":1,
-               "duration":"10s"
+               "duration":"20s"
             },
 
             {
@@ -72,13 +72,13 @@
       },
       "modifyProductById":{
          "executor":"ramping-arrival-rate",
-         "startTime":"1s",
+         "startTime":"10s",
          "startRate":5,
          "timeUnit":"1s",
          "stages":[
             {
                "target":1,
-               "duration":"10s"
+               "duration":"20s"
             },
 
             {
@@ -101,7 +101,7 @@
          "stages":[
             {
                "target":1,
-               "duration":"10s"
+               "duration":"20s"
             },
             {
                "target":0,

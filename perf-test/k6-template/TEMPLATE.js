@@ -51,7 +51,7 @@ export function setup() {
                               'Authorization': 'Bearer '+authToken});
  // console.log("serviceConfig  "+JSON.stringify(serviceConfig.params));
   */
-  for(let i=0;i<200;i++){
+  for(let i=0;i<50;i++){
   let res =http.post(serviceConfig.addProductUrl, JSON.stringify(product), serviceConfig.params);
   parseResponse(res);
   }

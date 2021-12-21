@@ -51,14 +51,23 @@ export function setup() {
                               'Authorization': 'Bearer '+authToken});
  // console.log("serviceConfig  "+JSON.stringify(serviceConfig.params));
   */
+  for(let i=0;i<200;i++){
+  let res =http.post(serviceConfig.addProductUrl, JSON.stringify(product), serviceConfig.params);
+  parseResponse(res);
+  }
+    sleep(1);
 
   let productsResp=http.get(serviceConfig.getAllProductsUrl, serviceConfig.params);
   parseResponse(productsResp);
   let body=JSON.parse(productsResp.body);
+
 //  console.log("Products  "+JSON.stringify(body));
   let results = body.filter(item => item.type=='Book');
+    sleep(1);
   serviceConfig.filterEntity=results;
-//  console.log("Filter  "+JSON.stringify(results))
+
+  //  console.log("Filter  "+JSON.stringify(results))
+        console.log("setup item  length "+results.length);
   return serviceConfig;
    }
 
@@ -117,7 +126,7 @@ export  function deleteProductById(data) {
     let item=items[Math.floor(Math.random() * items.length)]
     if(item){
   //  console.log("item  "+JSON.stringify(item));
-    let res =http.put(data.deleteProductByIdUrl.replace('$id',item.id),JSON.stringify(product), data.params);
+    let res =http.put(data.modifyProductByIdUrl.replace('$id',item.id),JSON.stringify(product), data.params);
     parseResponse(res);
     modifyProductRespTime.add(res.timings.duration);
     }
@@ -126,6 +135,19 @@ export  function deleteProductById(data) {
 };
 
 export function teardown(data) {
+
+  let productsResp=http.get(serviceConfig.getAllProductsUrl, serviceConfig.params);
+  parseResponse(productsResp);
+  let body=JSON.parse(productsResp.body);
+
+//  console.log("Products  "+JSON.stringify(body));
+  let results = body.filter(item => item.type=='Book');
+  sleep(1);
+  console.log("teardown Total item  "+results.length);
+  for(let i=0;i<results.length;i++){
+  let res =http.del(data.deleteProductByIdUrl.replace('$id',results[i].id), data.params);
+  parseResponse(res);
+  }
 
 //    parseResponse(http.post(serviceConfig.logoutUrl, user, data.params));
   };

@@ -123,5 +123,10 @@
       "http_req_duration{test_type:deleteProductById}":[
           "p(95)<950"
       ]
-   }
+   },
+   "teardownTimeout": "3.5m",
+   "setupTimeout": "180s"
+
+
+
 }

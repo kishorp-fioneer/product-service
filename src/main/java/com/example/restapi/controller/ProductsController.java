@@ -46,18 +46,18 @@ public class ProductsController {
 		return productsService.getProducts();
 	}
 
-	@RequestMapping(path = "/static/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	@ApiOperation("Gets all products")
-	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = String.class) })
-	public String getProductsStatic() {
-		return SAMPLE_STATIC_RESPONSE;
-	}
-
-	@GetMapping("/listHeaders")
-	public ResponseEntity<String> listAllHeaders(@RequestHeader Map<String, String> headers) {
-
-		return new ResponseEntity<String>(headers.toString(), HttpStatus.OK);
-	}
+//	@RequestMapping(path = "/static/", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+//	@ApiOperation("Gets all products")
+//	@ApiResponses(value = { @ApiResponse(code = 200, message = "OK", response = String.class) })
+//	public String getProductsStatic() {
+//		return SAMPLE_STATIC_RESPONSE;
+//	}
+//
+//	@GetMapping("/listHeaders")
+//	public ResponseEntity<String> listAllHeaders(@RequestHeader Map<String, String> headers) {
+//
+//		return new ResponseEntity<String>(headers.toString(), HttpStatus.OK);
+//	}
 
 	@RequestMapping(path = "{id}", method = RequestMethod.GET)
 	@ApiOperation("Gets the product with specific id")

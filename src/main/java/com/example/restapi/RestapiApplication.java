@@ -28,16 +28,16 @@ public class RestapiApplication implements CommandLineRunner {
 	@Override
 	public void run(String... strings) throws Exception {
 
-		List<String> types = Arrays.asList(new String[] {"TV", "Refrigerator", "Mobile", "AC", "Microwave", "Washing Machine", "Dishwasher"});
-		Random r = new Random();
-		for (int i = 1; i <= 100; i++) {
-			Product testProduct = new Product();
-			testProduct.setName("Simple Product " + i);
-			testProduct.setDescription("This is a electornic product # " + i);
-			testProduct.setType(types.get(r.nextInt(7)));
-			testProduct.setCategory("Electronics");
-			productRepository.save(testProduct);
-		}
+//		List<String> types = Arrays.asList(new String[] {"TV", "Refrigerator", "Mobile", "AC", "Microwave", "Washing Machine", "Dishwasher"});
+//		Random r = new Random();
+//		for (int i = 1; i <= 100; i++) {
+//			Product testProduct = new Product();
+//			testProduct.setName("Simple Product " + i);
+//			testProduct.setDescription("This is a electornic product # " + i);
+//			testProduct.setType(types.get(r.nextInt(7)));
+//			testProduct.setCategory("Electronics");
+//			productRepository.save(testProduct);
+//		}
 
 	}
 }

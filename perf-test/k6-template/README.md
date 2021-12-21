@@ -10,11 +10,16 @@ K6_TEST_TYPE possible values(`load`,`soak`,`spike`,`stress`,`smoke`)
 ### Build
 
 ```bash
-docker build -t test .
+docker build -t k6Template .
 ```
 
 ### Run
 
 ```bash
-docker run -it -e K6_HOSTENV=qa -e K6_SCRIPT=TEMPLATE.js -e K6_TEST_TYPE=load test
+docker run -it -e K6_HOSTENV=qa -e K6_SCRIPT=TEMPLATE.js -e K6_TEST_TYPE=load k6Template
+```
+## on local Build & Run
+install k6 on local system.
+```bash
+k6 run -e K6_HOSTENV=qa -e K6_TEST_TYPE=load TEMPLATE.js
 ```

@@ -88,20 +88,20 @@
    },
    "thresholds":{
       "http_req_duration{test_type:getProducts}":[
-         "p(95)<350",
-         "p(99)<450"
+         "p(95)<950",
+         "p(99)<850"
       ],
       "http_req_duration{test_type:addProduct}":[
-         "p(95)<300"
+         "p(95)<950",
       ],
       "http_req_duration{test_type:getProductById}":[
-         "p(95)<300"
+         "p(95)<950",
       ],
       "http_req_duration{test_type:modifyProductById}":[
-         "p(95)<300"
+         "p(95)<950",
       ],
       "http_req_duration{test_type:deleteProductById}":[
-         "p(95)<300"
+          "p(95)<950",
       ]
    }
 }

@@ -3,8 +3,6 @@ name: Product deploy
 on:
   push:
     branches: [ master ]
-    paths:
-      - 'product-service/**'
   pull_request:
     branches: [ master ]
   workflow_dispatch:
@@ -50,7 +48,7 @@ jobs:
         working-directory: ./target
 
       - name: Docker build
-        run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.1 -f product-service/Dockerfile product-service
+        run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.1 -f ./Dockerfile .
 
       - name: Docker Login
         uses: docker/login-action@v1.10.0
@@ -80,10 +78,10 @@ jobs:
       - name: Deploy to Kyma
         run: |
           #sed -i'' -e 's/:v1.2.0/:${{ github.sha }}/g' product-service/product-deployment-kyma.yaml
-          kubectl delete -f product-service/k8s/deployment-kyma.yaml -n perf-test
+          kubectl delete -f ./k8s/deployment-kyma.yaml -n perf-test
           sleep 5s
-          kubectl apply -f product-service/k8s/deployment-kyma.yaml -n perf-test
-          sleep 20s
+          kubectl apply -f ./k8s/deployment-kyma.yaml -n perf-test
+          sleep 150s
   k6_smoke_test:
     name: Smoke Test using k6
     runs-on: ubuntu-latest

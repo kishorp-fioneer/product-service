@@ -30,24 +30,24 @@
       "addProduct":{
          "executor":"ramping-arrival-rate",
          "startTime":"2m15s",
-         "startRate":50,
+         "startRate":10,
          "timeUnit":"1s",
          "stages":[
             {
-               "target":40,
+               "target":20,
                "duration":"30s"
             },
             {
-               "target":40,
-               "duration":"1m30s"
+               "target":20,
+               "duration":"30s"
             },
             {
                "target":0,
                "duration":"30s"
             }
          ],
-         "preAllocatedVUs":50,
-         "maxVUs":80,
+         "preAllocatedVUs":20,
+         "maxVUs":40,
          "tags":{
             "test_type":"addProduct"
          },

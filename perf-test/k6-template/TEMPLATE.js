@@ -1,13 +1,10 @@
 import http from 'k6/http';
 import { group,sleep } from "k6";
 import { loadOptions,loadData, parseResponse, loadServiceConfig, withHeaders } from "./lib/k6_extensions.js";
-import { Trend, Rate } from "k6/metrics";
-
-var getProductsRespTime = new Trend("getProducts_resp_time");
-var addProductRespTime = new Trend("addProduct_resp_time");
-var deleteProductRespTime = new Trend("deleteProduct_resp_time");
-var modifyProductRespTime = new Trend("modifyProduct_resp_time");
-var getProductRespTime = new Trend("getProduct_resp_time");
+import { Trend, Rate,Gauge } from "k6/metrics";
+import exec from 'k6/execution';
+var products_resp_time = new Trend("products_resp_time");
+var active_vu= new Trend("active_vu");
 
 // TODO :: call loadOptions() with the name of the json options that you want to load, eg: loadOptions('default-soak-test')
 //         This parameter must be supplied with a value. The directory './options/' will be searched and '.json' appended
@@ -76,7 +73,8 @@ export  function getProducts(data) {
   group("getProducts", function() {
     let res =http.get(data.getAllProductsUrl, data.params);
     parseResponse(res);
-    getProductsRespTime.add(res.timings.duration);
+    products_resp_time.add(res.timings.duration);
+    active_vu.add(exec.instance.vusActive);
     sleep(1);
   });
 };
@@ -90,8 +88,8 @@ export  function getProductById(data) {
   //console.log("item  "+JSON.stringify(item));
   let res =http.get(data.getProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
-  getProductRespTime.add(res.timings.duration);
-
+  products_resp_time.add(res.timings.duration);
+  active_vu.add(exec.instance.vusActive);
   }
     sleep(1);
   });
@@ -101,7 +99,8 @@ export  function addProduct(data) {
   group("addProduct", function() {
     let res =http.post(data.addProductUrl, JSON.stringify(product), data.params);
     parseResponse(res);
-      addProductRespTime.add(res.timings.duration);
+    products_resp_time.add(res.timings.duration);
+    active_vu.add(exec.instance.vusActive);
     sleep(1);
   });
 };
@@ -114,7 +113,8 @@ export  function deleteProductById(data) {
     //  console.log("item  "+JSON.stringify(item));
   let res =http.del(data.deleteProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
-  deleteProductRespTime.add(res.timings.duration);
+  products_resp_time.add(res.timings.duration);
+  active_vu.add(exec.instance.vusActive);
   }
   sleep(1);
 });
@@ -128,7 +128,8 @@ export  function deleteProductById(data) {
   //  console.log("item  "+JSON.stringify(item));
     let res =http.put(data.modifyProductByIdUrl.replace('$id',item.id),JSON.stringify(product), data.params);
     parseResponse(res);
-    modifyProductRespTime.add(res.timings.duration);
+    products_resp_time.add(res.timings.duration);
+      active_vu.add(exec.instance.vusActive);
     }
         sleep(1);
     });

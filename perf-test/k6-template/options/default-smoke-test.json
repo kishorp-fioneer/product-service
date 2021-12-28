@@ -133,7 +133,7 @@
           "p(95)<800"
       ]
    },
-   "teardownTimeout": "60",
+   "teardownTimeout": "3.5m",
    "setupTimeout": "60s"
 
 }

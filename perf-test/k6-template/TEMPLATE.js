@@ -5,7 +5,7 @@ import { group,sleep } from "k6";
 import { loadOptions,loadData, parseResponse, loadServiceConfig, withHeaders } from "./lib/k6_extensions.js";
 import { Trend, Rate,Gauge } from "k6/metrics";
 import exec from 'k6/execution';
-var products_resp_time = new Trend("products_resp_time");
+var req_resp_time = new Trend("req_resp_time");
 var active_vu= new Trend("active_vu");
 
 // TODO :: call loadOptions() with the name of the json options that you want to load, eg: loadOptions('default-soak-test')
@@ -75,7 +75,7 @@ export  function getProducts(data) {
   group("getProducts", function() {
     let res =http.get(data.getAllProductsUrl, data.params);
     parseResponse(res);
-    products_resp_time.add(res.timings.duration);
+    req_resp_time.add(res.timings.duration);
     active_vu.add(exec.instance.vusActive);
     sleep(1);
   });
@@ -90,7 +90,7 @@ export  function getProductById(data) {
   //console.log("item  "+JSON.stringify(item));
   let res =http.get(data.getProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
-  products_resp_time.add(res.timings.duration);
+  req_resp_time.add(res.timings.duration);
   active_vu.add(exec.instance.vusActive);
   }
     sleep(1);
@@ -101,7 +101,7 @@ export  function addProduct(data) {
   group("addProduct", function() {
     let res =http.post(data.addProductUrl, JSON.stringify(product), data.params);
     parseResponse(res);
-    products_resp_time.add(res.timings.duration);
+    req_resp_time.add(res.timings.duration);
     active_vu.add(exec.instance.vusActive);
     sleep(1);
   });
@@ -115,7 +115,7 @@ export  function deleteProductById(data) {
     //  console.log("item  "+JSON.stringify(item));
   let res =http.del(data.deleteProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
-  products_resp_time.add(res.timings.duration);
+  req_resp_time.add(res.timings.duration);
   active_vu.add(exec.instance.vusActive);
   }
   sleep(1);
@@ -130,7 +130,7 @@ export  function deleteProductById(data) {
   //  console.log("item  "+JSON.stringify(item));
     let res =http.put(data.modifyProductByIdUrl.replace('$id',item.id),JSON.stringify(product), data.params);
     parseResponse(res);
-    products_resp_time.add(res.timings.duration);
+    req_resp_time.add(res.timings.duration);
       active_vu.add(exec.instance.vusActive);
     }
         sleep(1);

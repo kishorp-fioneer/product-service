@@ -133,12 +133,8 @@
           "p(95)<800"
       ]
    },
-<<<<<<< HEAD
    "teardownTimeout": "3.5m",
    "setupTimeout": "60s"
-=======
-   "teardownTimeout": "150s",
-   "setupTimeout": "120s"
->>>>>>> ab797bfd6377f6df3b9e1739372def28e5ebe7c6
+
 
 }

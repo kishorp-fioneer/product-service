@@ -6,7 +6,7 @@ import { loadOptions,loadData, parseResponse, loadServiceConfig, withHeaders } f
 import { Trend, Rate,Gauge } from "k6/metrics";
 import exec from 'k6/execution';
 var req_resp_time = new Trend("req_resp_time");
-var active_vu= new Trend("active_vu");
+var active_vu= new Gauge("active_vu");
 
 // TODO :: call loadOptions() with the name of the json options that you want to load, eg: loadOptions('default-soak-test')
 //         This parameter must be supplied with a value. The directory './options/' will be searched and '.json' appended

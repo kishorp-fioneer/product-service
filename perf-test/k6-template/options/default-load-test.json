@@ -4,11 +4,11 @@
       "getProducts":{
          "executor":"ramping-arrival-rate",
          "startTime":"15s",
-         "startRate":50,
+         "startRate":1,
          "timeUnit":"1s",
          "stages":[
             {
-               "target":40,
+               "target":20,
                "duration":"30s"
             },
             {
@@ -21,7 +21,7 @@
             }
          ],
          "preAllocatedVUs":30,
-         "maxVUs":80,
+         "maxVUs":40,
          "tags":{
             "test_type":"getProducts"
          },
@@ -30,7 +30,7 @@
       "addProduct":{
          "executor":"ramping-arrival-rate",
            "startTime":"7m15s",
-         "startRate":10,
+         "startRate":1,
          "timeUnit":"1s",
          "stages":[
             {
@@ -38,7 +38,7 @@
                "duration":"30s"
             },
             {
-               "target":20,
+               "target":30,
                "duration":"30s"
             },
             {
@@ -47,7 +47,7 @@
             }
          ],
          "preAllocatedVUs":20,
-         "maxVUs":40,
+         "maxVUs":30,
          "tags":{
             "test_type":"addProduct"
          },
@@ -56,11 +56,11 @@
       "getProductById":{
          "executor":"ramping-arrival-rate",
          "startTime":"2m15s",
-         "startRate":50,
+         "startRate":1,
          "timeUnit":"1s",
          "stages":[
             {
-               "target":40,
+               "target":20,
                "duration":"30s"
             },
             {
@@ -73,7 +73,7 @@
             }
          ],
          "preAllocatedVUs":50,
-         "maxVUs":80,
+         "maxVUs":40,
          "tags":{
             "test_type":"getProductById"
          },
@@ -82,11 +82,11 @@
       "modifyProductById":{
          "executor":"ramping-arrival-rate",
           "startTime":"5m15s",
-         "startRate":50,
+         "startRate":1,
          "timeUnit":"1s",
          "stages":[
             {
-               "target":40,
+               "target":20,
                "duration":"30s"
             },
             {
@@ -99,7 +99,7 @@
             }
          ],
          "preAllocatedVUs":50,
-         "maxVUs":80,
+         "maxVUs":40,
          "tags":{
             "test_type":"modifyProductById"
          },
@@ -108,15 +108,15 @@
       "deleteProductById":{
          "executor":"ramping-arrival-rate",
           "startTime":"9m15s",
-         "startRate":50,
+         "startRate":1,
          "timeUnit":"1s",
          "stages":[
             {
-               "target":60,
+               "target":30,
                "duration":"40s"
             },
             {
-               "target":80,
+               "target":50,
                "duration":"1m30s"
             },
             {
@@ -125,7 +125,7 @@
             }
          ],
          "preAllocatedVUs":20,
-         "maxVUs":140,
+         "maxVUs":50,
          "tags":{
             "test_type":"deleteProductById"
          },

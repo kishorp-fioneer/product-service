@@ -72,7 +72,7 @@
                "duration":"30s"
             }
          ],
-         "preAllocatedVUs":50,
+         "preAllocatedVUs":30,
          "maxVUs":40,
          "tags":{
             "test_type":"getProductById"

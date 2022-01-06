@@ -17,7 +17,7 @@ export const options = {
 
 export default function () {
 
-  const res = http.get('https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/static/');
+  const res = http.get('https://product-perf.c-94c5d0c.kyma.shoot.live.k8s-hana.ondemand.com/api/products/');
   
   sleep(1);
 }

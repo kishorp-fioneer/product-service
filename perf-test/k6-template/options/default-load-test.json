@@ -152,6 +152,4 @@
    },
      "teardownTimeout": "3.5m",
      "setupTimeout": "180s"
-
-
 }

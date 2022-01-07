@@ -15,5 +15,5 @@ jobs:
       - name: Run local k6 test
         uses: k6io/action@v0.1
         with:
-          filename: test.js
+          filename: ./perf-test/test.js
           flags: --out influxdb=https://influxdb.c-1da60bd.kyma.ondemand.com/k6db

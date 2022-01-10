@@ -32,8 +32,6 @@ public class ProductsController {
 
 	private ProductsService productsService;
 
-	private Logger LOG = LoggerFactory.getLogger(ProductsController.class);
-
 	@Autowired
 	public void setProductsService(ProductsService productsService) {
 		this.productsService = productsService;

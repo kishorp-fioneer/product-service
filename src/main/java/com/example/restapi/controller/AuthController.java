@@ -33,7 +33,7 @@ public class AuthController {
 		// generate UUID as api_key
 		UUID uuid = UUID.randomUUID();
 
-		return String.format("{'user': '%s', 'api_key': '%s'}", userCredentials.getUsername(), uuid);
+		return String.format("{\"user\": \"%s\", \"api_key\": \"%s\"}", userCredentials.getUsername(), uuid);
 	}
 
 	@GetMapping("/logout")

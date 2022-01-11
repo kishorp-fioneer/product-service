@@ -48,7 +48,7 @@ jobs:
         working-directory: ./target
 
       - name: Docker build
-        run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.4 -f ./Dockerfile .
+        run: docker build -t ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.5 -f ./Dockerfile .
 
       - name: Docker Login
         uses: docker/login-action@v1.10.0
@@ -58,7 +58,7 @@ jobs:
           password: ${{ secrets.REGISTRY_PASSWORD }}        # Password or personal access token used to log against the Docker registry
 
       - name: Docker Push
-        run: docker push ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.4
+        run: docker push ${{ secrets.REGISTRY_USERNAME }}/product-service:0.0.5
 
   deploy-product:
     runs-on: ubuntu-latest

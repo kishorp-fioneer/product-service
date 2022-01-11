@@ -20,20 +20,20 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public String login(@RequestBody UserCredentials userCredentials) {
-		// simulate call to auth system to authenticate and get api_key for the user
+		// simulate call to auth system to authenticate and get access_token for the user
 		// UserInfo userInfo = authServer.login(userCredentials.getUsername(),
 		// userCredentials.getPassword());
-		// String api_key = userInfo.get("api_key");
+		// String access_token = userInfo.get("access_token");
 		// simulate network lag
 		try {
-			Thread.sleep(50);
+			Thread.sleep(40);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 		// generate UUID as api_key
 		UUID uuid = UUID.randomUUID();
 
-		return String.format("{\"user\": \"%s\", \"api_key\": \"%s\"}", userCredentials.getUsername(), uuid);
+		return String.format("{\"user\": \"%s\", \"access_token\": \"%s\"}", userCredentials.getUsername(), uuid);
 	}
 
 	@GetMapping("/logout")

@@ -28,7 +28,7 @@ spec:
         kyma-grafana: enabled
     spec:
       containers:
-        - image: kishor4j/product-service:0.0.4
+        - image: kishor4j/product-service:0.0.5
           name: product-perf
           env:
             - name: NUMBER_OF_PRODUCTS

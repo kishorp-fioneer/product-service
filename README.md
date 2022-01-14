@@ -1,13 +1,26 @@
-# spring-rest-api
-Spring REST API Project
+# Performance Test PoC
 
-Demonstrates all 4 basic HTTP request types with Spring REST.
+This project is used by Performance Test PoC for CWP project.
 
-GET, POST, PUT and DELETE controller methods implemented.
+PoC Components:
+* Product Service - Spring Boot-Java application providing REST APIs, deployed in perf-test namespace
+* Postgres Database - For persistence, deployed in perf-test namespace
+* k6 Perf test tool
+* Influx DB - For monitoring, deployed in monitoring namespace
+* Grafana - For monitoring, deployed in monitoring namespace
 
-There's also a @ControllerAdvice present to show how to take control of the response from your api on a higher-level.
+### Deploying InfluxDB
+```
+helm repo add influxdata https://helm.influxdata.com/
+helm upgrade --install my-release influxdata/influxdb -n monitoring
+```
+Create API Rule in Kyma console to expose influx db service, port:8086
 
-Source Code for http://udemy.com/learn-spring-and-spring-boot-10x-productive-java-development/
 
-
+### Deploying Grafana
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+helm install my-grafana-release bitnami/grafana -n monitoring
+```
+Create API Rule in Kyma console to expose grafana service, port:3000
 

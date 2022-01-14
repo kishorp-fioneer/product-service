@@ -7,7 +7,7 @@ import { Trend, Rate,Gauge } from "k6/metrics";
 import exec from 'k6/execution';
 var req_resp_time = new Trend("req_resp_time");
 var active_vu= new Gauge("active_vu");
-
+var http_reqs_info= new Gauge("http_reqs_info");
 // TODO :: call loadOptions() with the name of the json options that you want to load, eg: loadOptions('default-soak-test')
 //         This parameter must be supplied with a value. The directory './options/' will be searched and '.json' appended
 export let options = null;
@@ -73,6 +73,7 @@ export function setup() {
 
 export  function getProducts(data) {
   group("getProducts", function() {
+    http_reqs_info.add(1);
     let res =http.get(data.getAllProductsUrl, data.params);
     parseResponse(res);
     req_resp_time.add(res.timings.duration);
@@ -88,6 +89,7 @@ export  function getProductById(data) {
   let item=items[Math.floor(Math.random() * items.length)]
   if(item){
   //console.log("item  "+JSON.stringify(item));
+  http_reqs_info.add(1);
   let res =http.get(data.getProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
   req_resp_time.add(res.timings.duration);
@@ -99,6 +101,7 @@ export  function getProductById(data) {
 
 export  function addProduct(data) {
   group("addProduct", function() {
+    http_reqs_info.add(1);
     let res =http.post(data.addProductUrl, JSON.stringify(product), data.params);
     parseResponse(res);
     req_resp_time.add(res.timings.duration);
@@ -113,6 +116,7 @@ export  function deleteProductById(data) {
   let item=items[Math.floor(Math.random() * items.length)]
   if(item){
     //  console.log("item  "+JSON.stringify(item));
+  http_reqs_info.add(1);
   let res =http.del(data.deleteProductByIdUrl.replace('$id',item.id), data.params);
   parseResponse(res);
   req_resp_time.add(res.timings.duration);
@@ -128,6 +132,7 @@ export  function deleteProductById(data) {
     let item=items[Math.floor(Math.random() * items.length)]
     if(item){
   //  console.log("item  "+JSON.stringify(item));
+    http_reqs_info.add(1);
     let res =http.put(data.modifyProductByIdUrl.replace('$id',item.id),JSON.stringify(product), data.params);
     parseResponse(res);
     req_resp_time.add(res.timings.duration);

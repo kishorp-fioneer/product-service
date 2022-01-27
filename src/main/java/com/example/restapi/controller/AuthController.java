@@ -30,7 +30,7 @@ public class AuthController {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
-		// generate UUID as api_key
+		// generate UUID as access_token
 		UUID uuid = UUID.randomUUID();
 
 		return String.format("{\"user\": \"%s\", \"access_token\": \"%s\"}", userCredentials.getUsername(), uuid);

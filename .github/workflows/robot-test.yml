@@ -29,7 +29,7 @@ jobs:
           pip install robotframework-jsonlibrary
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with RobotFramework
-      run: robot ./RobotTests
+      run: robot .
     - name: Test Report Generation
       uses: actions/upload-artifact@v4
       if: success() || failure()

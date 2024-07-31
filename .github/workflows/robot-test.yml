@@ -33,7 +33,7 @@ jobs:
           pip install robotframework-jsonlibrary
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with RobotFramework
-      run: robot .
+      run: robot ./robot-tests
     - name: Print pwd
       run: pwd
     - name: Print ls
@@ -42,7 +42,7 @@ jobs:
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload 
-        path: .
+        path: robot-tests
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4        

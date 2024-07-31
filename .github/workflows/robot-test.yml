@@ -36,11 +36,13 @@ jobs:
       run: robot .
     - name: Print pwd
       run: pwd
+    - name: Print ls
+      run: ls
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload 
-        path: '/home/runner/work/product-service/product-service/report.html'
+        path: './report.html'
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4        

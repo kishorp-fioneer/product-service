@@ -32,17 +32,19 @@ jobs:
           pip install robotframework-requests
           pip install robotframework-jsonlibrary
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: CD 
+      run: cd robot-tests
     - name: Test with RobotFramework
-      run: robot ./robot-tests
+      run: robot .
     - name: Print pwd
       run: pwd
     - name: Print ls
-      run: ls robot-tests
+      run: ls 
     - name: Upload artifact
       uses: actions/upload-pages-artifact@v3
       with:
         # Upload 
-        path: robot-tests
+        path: .
     - name: Deploy to GitHub Pages
       id: deployment
       uses: actions/deploy-pages@v4        
